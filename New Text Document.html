@@ -82,9 +82,9 @@ grid-template-rows: repeat(4,100px);
 <body>
   <div id="content">
     Timer: <span id="timer"></span><br/>
-  </div>
+  </div>//start button//
   <button id="start">Start</button>
-  <div id="clickarea">
+  <div id="clickarea">//the grid of 1-20
     <div class="box"><input onclick="change1()" type="button" value=3 id="myButton1"></div>
       <div class="box"><input onclick="change2()" type="button" value=8 id="myButton2"></div>
       <div class="box"><input onclick="change3()" type="button" value=17 id="myButton3"></div>
@@ -106,9 +106,23 @@ grid-template-rows: repeat(4,100px);
       <div class="box"><input onclick="change19()" type="button" value=19 id="myButton19"></div>
       <div class="box"><input onclick="change20()" type="button" value=12 id="myButton20"></div>   
   </div>
+	
+	
+	
+	
+	//this button when clicked should show the top 5 scores on the console
   <input onclick="display()" type="button" value="Display Top 5 scores" id="hiscore">
+	
+	
+	
+	
+	
+	
+	//script starts here
+	
+	
   <script type="text/javascript">
-    var score; // to store the current score
+    var score; // number of clicks
     var duration;
     var startTime; // start time
     var ended = true; // boolean indicating if game is ended
@@ -119,6 +133,9 @@ grid-template-rows: repeat(4,100px);
     var startBtn = document.getElementById("start");
     var clickArea = document.getElementById("clickarea");
 
+	  //the twenty functions for the twenty buttons
+	  //increments value on each button by twenty on clicking
+	  
 function change1()
 {
 document.getElementById("myButton1").value=String(Number(document.getElementById("myButton1").value)+20);
@@ -201,6 +218,16 @@ function change20()
 {
 document.getElementById("myButton20").value=String(Number(document.getElementById("myButton20").value)+20);
 }
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  //THE FUNCTION YOU NEED TO CHECK
+	  //I want to display the top 5 scores on the console on click of the button but it`s not working
+	  //pls help 
 function display()
 {
 document.getElementById("hiscore");
@@ -215,6 +242,13 @@ const highscores = [...JSON.parse(savedScores), result] // add the result
 localStorage.setItem('time', JSON.stringify(highscores))
   }
 
+	  
+	  
+	  
+	  
+	  
+	  
+	  
     // we define two functions for showing or hiding a HTML element
     var show = function(elem) {
       elem.style.display = 'inline';
@@ -236,7 +270,7 @@ localStorage.setItem('time', JSON.stringify(highscores))
       var timerId = setInterval(function() {
         var total = (new Date().getTime() - startTime) / 1000;
 
-        // while total lower than duration, we update timer and the clicks by seconds
+        // if the number of clicks is less than 40 we can let the timer run
         if (score<=38) {
           timerTxt.textContent = total.toFixed(3);
           clicksTxt.textContent = (score / total).toFixed(2);
@@ -244,7 +278,7 @@ localStorage.setItem('time', JSON.stringify(highscores))
           // otherwise, game is ended, we clear interval and we set game as ended
           ended = true;
           clearInterval(timerId);
-// Check browser support
+// for local storage of time interval
 if (typeof(Storage) !== "undefined") {
   // Store
   window.localStorage.setItem("time1",timerTxt.textContent);
@@ -293,5 +327,10 @@ for(var i in localStorage.slice(0,5)) {
 }
 
 </script>
+	
+	
+	
+	
+	//end of script
 </body>
 </html>
